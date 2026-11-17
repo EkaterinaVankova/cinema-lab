@@ -31,8 +31,8 @@ public class TicketServiceTest {
         service.buyTicket(session, 5);
 
         assertThrows(
-            IllegalStateException.class,
-            () -> service.buyTicket(session, 5)
+                IllegalStateException.class,
+                () -> service.buyTicket(session, 5)
         );
     }
 
@@ -45,8 +45,22 @@ public class TicketServiceTest {
         TicketService service = new TicketService(repository);
 
         assertThrows(
-            IllegalStateException.class,
-            () -> service.buyTicket(session, 11)
+                IllegalStateException.class,
+                () -> service.buyTicket(session, 11)
+        );
+    }
+
+    @Test
+    void invalidSeatNumberZero() {
+        Movie movie = new Movie(1, "Интерстеллар");
+        Session session = new Session(1, movie, 10);
+
+        TicketRepository repository = new InMemoryTicketRepository();
+        TicketService service = new TicketService(repository);
+
+        assertThrows(
+                Exception.class,
+                () -> service.buyTicket(session, 0)
         );
     }
 }
