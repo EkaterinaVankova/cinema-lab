@@ -60,7 +60,7 @@ public class TicketServiceTest {
 
         assertThrows(
                 Exception.class,
-                () -> service.buyTicket(session, 101)
+                () -> service.buyTicket(session, 5)
         );
     }
 }
